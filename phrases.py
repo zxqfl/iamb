@@ -86,7 +86,12 @@ start_phrases = {
         "The",
         "First",
         "Find",
-        "See"
+        "See",
+        "Only",
+        "Thy",
+        "When",
+        "Whilst",
+        "And",
     ],
     2: [
         "Behold",
@@ -95,6 +100,7 @@ start_phrases = {
         "Destroy",
         "Toward",
         "Abound",
+        "Perhaps",
         "Methinks",
     ],
     3: [
