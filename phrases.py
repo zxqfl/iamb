@@ -44,14 +44,33 @@ end_phrases = {
         "with surcease success",
         "love as swift as thought",
         "o're the castle flew",
+        "where is the lamb sauce"
     ],
     6: [
         "as boundless as the sea",
-        "thy eternal summer",
         "the darling buds of May",
+        "eternal light prevails",
+        "thou art a fishmonger",
     ],
     7: [
+        "through the mist and fog light shines",
+        "soaring through the sky a soul",
+        "dancing o'er an empty lake",
+    ],
+    8: [
+        "forever and forever still",
         "nor reason can my passion hide",
+        "of gods and men this tale unfolds",
+        "by mountains set aflame by morn",
+    ],
+    9: [
+        "- words as sweet as honey seems to bees"
+    ],
+    10: [
+        "Mysterious as the dark side of the moon",
+        "Love is a spirit all compact of fire",
+        "If music be the food of love, play on",
+        "A song that lulls the heart ignites truth love",
     ]
 }
 
