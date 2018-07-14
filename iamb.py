@@ -26,7 +26,7 @@ def test_split_token():
     assert split_token("FOO_BAR") == ["FOO", "BAR"]
 
 def tokenize(line):
-    result = re.findall("""[A-Za-z_]+|[^\s]""", line)
+    result = re.findall("""[A-Za-z_0-9]+|[^\s]""", line)
     result = [part for token in result for part in split_token(token)]
     return result
 
@@ -40,8 +40,11 @@ def syllables_of_token(*, token, stresses):
         return []
     raise Exception("unrecognized token: " + token)
 
+stresses = None
 def main(input_lines):
-    stresses = load_stresses()
+    global stresses # hack for fast tests
+    if stresses is None:
+        stresses = load_stresses()
     for index, line in enumerate(input_lines):
         def err(msg):
             msg = "on line {}: {}\nthe line is: {}".format(index+1, msg, line)
@@ -58,7 +61,8 @@ def test_main():
     main([])
     main(["{}"])
     main(["But, soft! what light through yonder window breaks?"])
-    main(["But, soft! what light through yonder windo0w breaks, bro?"])
+    with pytest.raises(Exception):
+        main(["But, soft! what light through yonder window breaks, bro?"])
 
 if __name__ == "__main__":
     main(sys.stdin)
