@@ -11,8 +11,14 @@ INFINITY = 1_000_000_000
 def main(input_lines):
     if type(input_lines) == str:
         input_lines = [input_lines]
+    new_input_lines = []
+    for x in input_lines:
+        if "#" in x:
+            print(x, end='')
+        else:
+            new_input_lines.append(x)
     stresses = load_stresses()
-    tokens = [x for line in input_lines for x in basic_split(line)]
+    tokens = [x for line in new_input_lines for x in basic_split(line)]
     syllables = [to_syllables(token=token, stresses=stresses) for token in tokens]
     cache = {}
     line_end = 10
@@ -42,16 +48,19 @@ def main(input_lines):
                                        is_first_syllable_stressed = is_first_syllable_stressed)] + sub_soln
                 best = sub_cost, sub_soln
         if index < len(syllables):
-            is_valid_now = True
+            cost_now = 0
             can_go_now = True
             for syl_index, syl in enumerate(syllables[index]):
                 is_supposed_to_be_stressed = (syl_index + posn_in_line) % 2 == 1
                 if syl_index + posn_in_line >= line_end:
                     can_go_now = False
                 if is_supposed_to_be_stressed and syl[0] == '0':
-                    is_valid_now = False
+                    cost_now += 100
+                if is_supposed_to_be_stressed and syl[0] == '2':
+                    cost_now += 2
+                if len(syllables[index]) >= 3 and syl[0] == '1' and not is_supposed_to_be_stressed:
+                    cost_now += 100
             if can_go_now:
-                cost_now = 0 if is_valid_now else 100
                 sub_cost, sub_soln = rec(index+1, posn_in_line + len(syllables[index]))
                 sub_cost += cost_now
                 if sub_cost <= best[0]:
@@ -60,6 +69,8 @@ def main(input_lines):
         best = best[0], prepend + best[1]
         cache[key] = best
         return best
+    for i in range(len(syllables), 0, -1):
+        rec(i, 0)
     cost, solution = rec(0, 0)
     if cost == INFINITY:
         raise Exception("no solution")
@@ -77,9 +88,12 @@ def test_main():
 if __name__ == "__main__":
     cost, result = main(sys.stdin)
     print("cost:", cost, file=sys.stderr)
+    prev = None
     for x in result:
         if type(x) != str:
             x = x[1]
-        sys.stdout.write(x)
+        if x != prev or x != " ":
+            sys.stdout.write(x)
+        prev = x
     sys.stdout.write('\n')
 
