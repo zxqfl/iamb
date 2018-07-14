@@ -1,6 +1,6 @@
 This converts code to iambic pentameter:
 
-```
+```cpp
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_DEGREE 5
@@ -95,7 +95,7 @@ i) == - /* noble Feridun */
 ```
 
 Original:
-```
+```cpp
 /**
  * Copyright 2014 Gagarine Yaikhom (MIT License)
  *
