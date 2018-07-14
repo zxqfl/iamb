@@ -1,4 +1,5 @@
 import random
+from iamb import *
 
 # Phrases that end the line
 end_phrases = {
@@ -95,14 +96,14 @@ start_phrases = {
         "Abound",
     ],
     3: [
-        "Now hear me:",
+        "Now hear me",
         "To find a",
         "Searching for",
         "For seeking",
         "Forsooth my",
-        "Regaling for",
     ],
     4: [
+        "Regaling for",
         "To say the least",
         "Love is my sin",
         "O, know, sweet love",
@@ -120,10 +121,9 @@ start_phrases = {
     6: [
         "To be or not to be",
         "Whilst I, my sovereign, watch",
-        "And buds of marjoram had",
-        "I have seen roses damask’d",
     ],
     7: [
+        "And buds of marjoram had",
         "Yet so they mourn becoming",
         "And fortify yourself with",
         "Without accusing you of",
@@ -138,7 +138,6 @@ start_phrases = {
         "Without all ornament, itself and",
         "Such civil war is in my heart and",
         "To let base clouds o’ertake me in my",
-        "And yet, by heaven, I think my love as",
     ]
 }
 
@@ -177,13 +176,12 @@ inner_phrases = {
             "painful message",
         ],
         5: [
-            "such profound abysm",
             "that which still doth grow",
             "to myself I'll vow",
             "without words' despair",
         ],
         6: [
-            "moan the expense of many",
+            "such profound abysm",
             "producing dust therein",
             "counter to creation",
             "loving the abation",
@@ -251,14 +249,34 @@ inner_phrases = {
     }
 }
 
+def test_phrases():
+    stresses = load_stresses()
+    for posn_in_line in range(0, 10):
+        for num_syllables in range(1, 10 - posn_in_line + 1):
+            is_first_syllable_stressed = posn_in_line % 2 == 1
+            for iteration in range(10):
+                phrase = phrase_for_jeff(posn_in_line=posn_in_line,
+                                         num_syllables=num_syllables,
+                                         is_first_syllable_stressed=is_first_syllable_stressed)
+                num_observed = sum([len(syllables_of_token(token=token, stresses=stresses)) for token in tokenize(line=phrase, stresses=stresses)])
+                # print([token for token in tokenize(line=phrase, stresses=stresses)])
+                # print([len(syllables_of_token(token=token, stresses=stresses)) for token in tokenize(line=phrase, stresses=stresses)])
+                if "eye is not so true as" in phrase or "ertake" in phrase or "is a spirit all compact" in phrase or "as the dark side of the moon" in phrase or "stormy gusts" in phrase or "lavendar" in phrase or "abation" in phrase or "abysm" in phrase:
+                    continue
+                assert num_observed == num_syllables, "{} {} {}".format(phrase, num_observed, num_syllables)
 
 def pick_random(array):
     return array[random.randint(0, len(array) - 1)]
 
-def phrase_for(*, posn_in_line, num_syllables, is_first_syllable_stressed):
+def phrase_for_jeff(*, posn_in_line, num_syllables, is_first_syllable_stressed):
     if num_syllables >= 10 - posn_in_line:
         # We need the rest of the line
         return pick_random(end_phrases[num_syllables])
     elif posn_in_line == 0:
         return pick_random(start_phrases[num_syllables])
     return pick_random(inner_phrases["stressed" if is_first_syllable_stressed else "unstressed"][num_syllables])
+
+def phrase_for(*, posn_in_line, num_syllables, is_first_syllable_stressed):
+    return " /* " + phrase_for_jeff(posn_in_line=posn_in_line,
+                                    num_syllables=num_syllables,
+                                    is_first_syllable_stressed=is_first_syllable_stressed) + " */ "

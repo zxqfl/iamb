@@ -55,9 +55,11 @@ def main(input_lines):
                 if syl_index + posn_in_line >= line_end:
                     can_go_now = False
                 if is_supposed_to_be_stressed and syl[0] == '0':
-                    cost_now = max(cost_now, 100)
+                    cost_now += 100
                 if is_supposed_to_be_stressed and syl[0] == '2':
-                    cost_now = max(cost_now, 2)
+                    cost_now += 2
+                if len(syllables[index]) >= 3 and syl[0] == '1' and not is_supposed_to_be_stressed:
+                    cost_now += 100
             if can_go_now:
                 sub_cost, sub_soln = rec(index+1, posn_in_line + len(syllables[index]))
                 sub_cost += cost_now
