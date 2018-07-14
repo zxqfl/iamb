@@ -38,13 +38,13 @@ end_phrases = {
         "of naked truth",
         "in one fell swoop",
         "from jaws of death",
+        "where's the lamb sauce"
         "beauty untrimm'd",
     ],
     5: [
         "with surcease success",
         "love as swift as thought",
         "o're the castle flew",
-        "where is the lamb sauce"
     ],
     6: [
         "as boundless as the sea",
@@ -195,6 +195,11 @@ inner_phrases = {
             "those under the dreaded sea",
             "cannot fathom summer's draw"
         ],
+        8: [
+            "whilst in love the game is only drew",
+            "moan the banish'd devilish darkness",
+            "your sweet issues are mine to bear"
+        ]
     },
     "unstressed": {
         1: mono_syllabic_words,
@@ -226,21 +231,22 @@ inner_phrases = {
             "dear virtue hate",
         ],
         5: [
-            "You note a message",
-            "In deep abysm",
-            "In deadly waters",
-            "To give full growth to",
-            "What means the world to"
+            "you note a message",
+            "in deep abysm",
+            "in deadly waters",
+            "to give full growth to",
+            "what means the world to"
         ],
         6: [
-            "Without all ornament",
-            "Thus policy in love",
+            "without all ornament",
+            "thus policy in love",
         ],
         7: [
-            "O let me, true in love, write",
+            "o let me, true in love, write",
         ],
         8: [
-            "For thee against myself I'll fight"
+            "for thee against myself I'll fight",
+            "making their tomb the womb wherein"
         ],
     }
 }
@@ -250,7 +256,7 @@ def pick_random(array):
     return array[random.randint(0, len(array) - 1)]
 
 def phrase_for(*, posn_in_line, num_syllables, is_first_syllable_stressed):
-    if num_syllables >= 10 - posn_in_line + 1:
+    if num_syllables >= 10 - posn_in_line:
         # We need the rest of the line
         return pick_random(end_phrases[num_syllables])
     elif posn_in_line == 0:
