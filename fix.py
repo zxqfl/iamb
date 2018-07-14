@@ -48,16 +48,17 @@ def main(input_lines):
                                        is_first_syllable_stressed = is_first_syllable_stressed)] + sub_soln
                 best = sub_cost, sub_soln
         if index < len(syllables):
-            is_valid_now = True
+            cost_now = 0
             can_go_now = True
             for syl_index, syl in enumerate(syllables[index]):
                 is_supposed_to_be_stressed = (syl_index + posn_in_line) % 2 == 1
                 if syl_index + posn_in_line >= line_end:
                     can_go_now = False
                 if is_supposed_to_be_stressed and syl[0] == '0':
-                    is_valid_now = False
+                    cost_now = max(cost_now, 100)
+                if is_supposed_to_be_stressed and syl[0] == '2':
+                    cost_now = max(cost_now, 2)
             if can_go_now:
-                cost_now = 0 if is_valid_now else 100
                 sub_cost, sub_soln = rec(index+1, posn_in_line + len(syllables[index]))
                 sub_cost += cost_now
                 if sub_cost <= best[0]:
