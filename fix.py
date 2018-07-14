@@ -63,14 +63,13 @@ def main(input_lines):
     return solution
 
 def test_main():
-    assert main("to be or not to be") == [
+    assert main("to be or not to be")[:-1] == [
         "to", " ",
         "be", " ",
         "or", " ",
         "not", " ",
         "to", " ",
-        "be",
-        "mock 6 4 False"]
+        "be"]
 
 if __name__ == "__main__":
     result = main(sys.stdin)
