@@ -55,6 +55,10 @@ def test_tokenize():
 def syllables_of_token(*, token, stresses):
     if token == "=":
         token = "EQUALS"
+    if token == "-":
+        token = "MINUS"
+    if token == "+":
+        token = "PLUS"
     if token == '"':
         token = "QUOTE"
     if token == '%':
