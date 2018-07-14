@@ -141,7 +141,7 @@ start_phrases = {
     ]
 }
 
-mono_syllabic_words = ["the", "of", "to", "from", "sees"]
+mono_syllabic_words = ["hark!", "here", "no!", "there"]
 
 inner_phrases = {
     "stressed": {
