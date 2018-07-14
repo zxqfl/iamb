@@ -1,4 +1,14 @@
-This converts code to iambic pentameter:
+This tool produces poetry: converts
+
+your code to iambic pentameter.
+
+(As punctuation is concerned, you should:
+
+read `-=+.&`
+
+as "minus", "equals", "plus", "dot", "ampersand"
+
+respectively; don't read the rest aloud.)
 
 ```cpp
 #include <stdio.h>
