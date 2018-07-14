@@ -58,9 +58,10 @@ def syllables_of_token(*, token, stresses):
     if token == '"':
         token = "QUOTE"
     if token == '%':
-        token = "QUOTE"
-    if token == '11':
-        token = "ELEVEN"
+        token = "PERCENT"
+    if token == '33':
+        return (syllables_of_token(token="THIRTY", stresses=stresses) +
+                syllables_of_token(token="THREE", stresses=stresses))
     if len(token) == 1 and not token.isalpha():
         return []
     if token in stresses:
@@ -72,6 +73,8 @@ def is_valid_iamb(syllables):
         return False
     syllables_ok = len(syllables) == 2
     if len(syllables) == 3 and syllables[-2][1] == "THE":
+        syllables_ok = True
+    if len(syllables) == 3 and syllables[0] == syllables[1] and syllables[0][0] == '0':
         syllables_ok = True
     return syllables_ok
 
