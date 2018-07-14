@@ -64,7 +64,8 @@ end_phrases = {
         "by mountains set aflame by morn",
     ],
     9: [
-        "- words as sweet as honey seems to bees"
+        "- words as sweet as honey seems to bees",
+        "winds of summer air bring boundless love"
     ],
     10: [
         "Mysterious as the dark side of the moon",
@@ -74,8 +75,42 @@ end_phrases = {
     ]
 }
 
+start_phrases = {
+    1: [
+        "The",
+        "First",
+        "Find",
+        "See"
+    ],
+    2: [
+        "Behold",
+        "See the",
+        "Regard",
+    ],
+    3: [
+    ]
+}
+
+
+inner_phrases = {
+    "stressed": {
+        1: [
+        ]
+    },
+    "unstressed": {
+        1: [
+        ]
+    }
+}
+
+
 def pick_random(array):
     return array[random.randint(0, len(array) - 1)]
 
 def phrase_for(*, posn_in_line, num_syllables, is_first_syllable_stressed):
-    return pick_random(end_phrases[num_syllables])
+    if num_syllables >= 10 - posn_in_line + 1:
+        # We need the rest of the line
+        return pick_random(end_phrases[num_syllables])
+    elif posn_in_line == 0:
+        return pick_random(start_phrases[num_syllables])
+    return pick_random(inner_phrases["stressed" if is_first_syllable_stressed else "unstressed"][num_syllables])
