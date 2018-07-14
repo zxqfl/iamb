@@ -8,7 +8,7 @@ end_phrases = {
         "caught",
         "seen",
         "torn",
-        "proved"
+        "proved",
         "loved",
         "pure",
         "white",
@@ -28,7 +28,7 @@ end_phrases = {
         "seemeth pure",
         "rose distill'd",
         "heart assured",
-        "noble Feridun"
+        "noble Feridun",
         "beauteous geese",
     ],
     4: [

@@ -1,6 +1,7 @@
 import re
 import sys
 import pytest
+from num2words import num2words
 
 def strip_non_stress(pronunciation):
     return [c for c in pronunciation if c in "012"]
@@ -55,13 +56,15 @@ def test_tokenize():
 def syllables_of_token(*, token, stresses):
     if token == "=":
         token = "EQUALS"
-    if token == '"':
-        token = "QUOTE"
+    if token == "-":
+        token = "MINUS"
+    if token == "+":
+        token = "PLUS"
     if token == '%':
         token = "PERCENT"
-    if token == '33':
-        return (syllables_of_token(token="THIRTY", stresses=stresses) +
-                syllables_of_token(token="THREE", stresses=stresses))
+    if token.isdigit():
+        elts = num2words(int(token)).upper().replace("-", " ").split()
+        return [s for elt in elts for s in syllables_of_token(token=elt, stresses=stresses)]
     if len(token) == 1 and not token.isalpha():
         return []
     if token in stresses:
