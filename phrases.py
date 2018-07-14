@@ -17,6 +17,7 @@ end_phrases = {
         "golden",
         "still dark",
         "bloodstained",
+        "adieu",
         "sun soaked",
         "afoot",
         "of gods",
@@ -93,6 +94,7 @@ start_phrases = {
         "Destroy",
         "Toward",
         "Abound",
+        "Methinks",
     ],
     3: [
         "Now hear me:",
@@ -100,9 +102,9 @@ start_phrases = {
         "Searching for",
         "For seeking",
         "Forsooth my",
-        "Regaling for",
     ],
     4: [
+        "Regaling for",
         "To say the least",
         "Love is my sin",
         "O, know, sweet love",
@@ -142,7 +144,7 @@ start_phrases = {
     ]
 }
 
-mono_syllabic_words = ["the", "of", "to", "from", "sees"]
+mono_syllabic_words = ["the", "of", "to", "from", "sees", "for"]
 
 inner_phrases = {
     "stressed": {
@@ -154,6 +156,8 @@ inner_phrases = {
             "loving",
             "hating",
             "seeing",
+            "hither",
+            "hither",
             "broken",
             "shattered",
             "struck down",
@@ -161,33 +165,37 @@ inner_phrases = {
             "vanquished"
         ],
         3: [
-            "treason then",
+            "treason for",
             "misfortune",
             "fortunate",
-            "loving smile",
+            "loving still",
             "sinful smile",
             "lavendar",
             "summer sound",
             "honey sweet",
+            "pains me still"
         ],
         4: [
             "king and country",
             "roads to heaven",
             "seething anger",
             "painful message",
+            "art much too fair",
         ],
         5: [
-            "such profound abysm",
             "that which still doth grow",
             "to myself I'll vow",
             "without words' despair",
+            "doth steal sweet hours from",
         ],
         6: [
+            "such profound abysm",
             "moan the expense of many",
             "producing dust therein",
             "counter to creation",
             "loving the abation",
             "harmony in music"
+            "some suspect of ill mask’d",
         ],
         7: [
             "old to dress his beauty new",
@@ -198,13 +206,14 @@ inner_phrases = {
         8: [
             "whilst in love the game is only drew",
             "moan the banish'd devilish darkness",
-            "your sweet issues are mine to bear"
+            "your sweet issues are mine to bear",
         ]
     },
     "unstressed": {
         1: mono_syllabic_words,
         2: [
             "behold",
+            "perchance",
             "succeed",
             "destroy",
             "abound",
@@ -212,6 +221,10 @@ inner_phrases = {
             "proves real",
             "makes good",
             "perplexed",
+            "controlled",
+            "rescind",
+            "methinks"
+            "implore",
         ],
         3: [
             "to see a",
@@ -229,20 +242,28 @@ inner_phrases = {
             "like raven black",
             "with gentle gait",
             "dear virtue hate",
+            "with false compare",
         ],
         5: [
             "you note a message",
             "in deep abysm",
             "in deadly waters",
             "to give full growth to",
-            "what means the world to"
+            "what means the world to",
+            "bound for the prize of",
         ],
         6: [
             "without all ornament",
             "thus policy in love",
+            "a tale as old as time",
+            "a song as old as rhyme",
+            "like Beauty and the Beast",
+            "are nothing like the sun",
         ],
         7: [
             "o let me, true in love, write",
+            "regard this task with caution",
+            "relinquish thoughts of worry"
         ],
         8: [
             "for thee against myself I'll fight",
