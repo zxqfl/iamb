@@ -11,8 +11,14 @@ INFINITY = 1_000_000_000
 def main(input_lines):
     if type(input_lines) == str:
         input_lines = [input_lines]
+    new_input_lines = []
+    for x in input_lines:
+        if "#" in x:
+            print(x, end='')
+        else:
+            new_input_lines.append(x)
     stresses = load_stresses()
-    tokens = [x for line in input_lines for x in basic_split(line)]
+    tokens = [x for line in new_input_lines for x in basic_split(line)]
     syllables = [to_syllables(token=token, stresses=stresses) for token in tokens]
     cache = {}
     line_end = 10
@@ -60,6 +66,8 @@ def main(input_lines):
         best = best[0], prepend + best[1]
         cache[key] = best
         return best
+    for i in range(len(syllables), 0, -1):
+        rec(i, 0)
     cost, solution = rec(0, 0)
     if cost == INFINITY:
         raise Exception("no solution")
@@ -77,9 +85,12 @@ def test_main():
 if __name__ == "__main__":
     cost, result = main(sys.stdin)
     print("cost:", cost, file=sys.stderr)
+    prev = None
     for x in result:
         if type(x) != str:
             x = x[1]
-        sys.stdout.write(x)
+        if x != prev or x != " ":
+            sys.stdout.write(x)
+        prev = x
     sys.stdout.write('\n')
 

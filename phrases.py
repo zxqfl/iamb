@@ -8,7 +8,7 @@ end_phrases = {
         "caught",
         "seen",
         "torn",
-        "proved",
+        "hark!",
         "loved",
         "pure",
         "white",

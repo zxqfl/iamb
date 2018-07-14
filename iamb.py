@@ -22,9 +22,13 @@ def load_stresses():
     return result
 
 def sound_out(*, stresses, token):
+    if token[0] == "'" and token[-1] == "'":
+        token = token[1:-1]
     if token in stresses or token.isdigit():
         return [token]
     else:
+        if len(token) >= 2:
+            print("sounding out", token, file=sys.stderr)
         return [c for c in token]
 
 def split_token(*, stresses, token):
