@@ -3,6 +3,6 @@
 using namespace std;
 
 int main() {
-  int n = 11;
-  printf("TerribleHack %d", n);
+  int n = 33;
+  printf("Terrible Hack %d", n);
 }

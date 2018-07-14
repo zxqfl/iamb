@@ -78,4 +78,4 @@ def pick_random(array):
     return array[random.randint(0, len(array) - 1)]
 
 def phrase_for(*, posn_in_line, num_syllables, is_first_syllable_stressed):
-    return pick_random(end_phrases[num_syllables])
+    return " /* " + pick_random(end_phrases[num_syllables]) + " */ "

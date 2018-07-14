@@ -41,29 +41,32 @@ def main(input_lines):
                                        num_syllables = new_posn - posn_in_line,
                                        is_first_syllable_stressed = is_first_syllable_stressed)] + sub_soln
                 best = sub_cost, sub_soln
-        is_valid_now = index < len(syllables)
         if index < len(syllables):
+            is_valid_now = True
+            can_go_now = True
             for syl_index, syl in enumerate(syllables[index]):
                 is_supposed_to_be_stressed = (syl_index + posn_in_line) % 2 == 1
                 if syl_index + posn_in_line >= line_end:
-                    is_valid_now = False
+                    can_go_now = False
                 if is_supposed_to_be_stressed and syl[0] == '0':
                     is_valid_now = False
-        if is_valid_now:
-            sub_cost, sub_soln = rec(index+1, posn_in_line + len(syllables[index]))
-            if sub_cost <= best[0]:
-                sub_soln = [tokens[index]] + sub_soln
-                best = sub_cost, sub_soln
+            if can_go_now:
+                cost_now = 0 if is_valid_now else 100
+                sub_cost, sub_soln = rec(index+1, posn_in_line + len(syllables[index]))
+                sub_cost += cost_now
+                if sub_cost <= best[0]:
+                    sub_soln = [tokens[index]] + sub_soln
+                    best = sub_cost, sub_soln
         best = best[0], prepend + best[1]
         cache[key] = best
         return best
     cost, solution = rec(0, 0)
     if cost == INFINITY:
         raise Exception("no solution")
-    return solution
+    return cost, solution
 
 def test_main():
-    assert main("to be or not to be")[:-1] == [
+    assert main("to be or not to be")[1][:-1] == [
         "to", " ",
         "be", " ",
         "or", " ",
@@ -72,7 +75,8 @@ def test_main():
         "be"]
 
 if __name__ == "__main__":
-    result = main(sys.stdin)
+    cost, result = main(sys.stdin)
+    print("cost:", cost, file=sys.stderr)
     for x in result:
         if type(x) != str:
             x = x[1]
