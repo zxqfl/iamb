@@ -1,2 +1,2 @@
-def phrase_for(*, num_syllables, is_first_syllable_stressed):
-    assert False
+def phrase_for(*, posn_in_line, num_syllables, is_first_syllable_stressed):
+    return "mock {} {} {}".format(posn_in_line, num_syllables, is_first_syllable_stressed)

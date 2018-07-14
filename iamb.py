@@ -40,14 +40,17 @@ def test_split_token():
     assert split_token(token="QXPAZ", stresses=stresses) == ['Q', 'X', 'P', 'A', 'Z']
     assert split_token(token="11", stresses=stresses) == ["11"]
 
+def basic_split(line):
+    return re.findall("""[A-Za-z_0-9']+|[^\s]| """, line)
+
 def tokenize(*, stresses, line):
-    result = re.findall("""[A-Za-z_0-9']+|[^\s]""", line)
+    result = basic_split(line)
     result = [part for token in result for part in split_token(token=token, stresses=stresses)]
     return result
 
 def test_tokenize():
     stresses = load_stresses()
-    assert tokenize(line="int main_fun() {", stresses=stresses) == ["INT", "MAIN", "FUN", '(', ')', '{']
+    assert tokenize(line="int main_fun() {", stresses=stresses) == ["INT", " ", "MAIN", "FUN", '(', ')', ' ', '{']
 
 def syllables_of_token(*, token, stresses):
     if token == "=":
@@ -65,7 +68,7 @@ def syllables_of_token(*, token, stresses):
     raise Exception("unrecognized token: " + token)
 
 def is_valid_iamb(syllables):
-    if syllables[-1][0] == 0: # this means unstressed in CMU dictionary
+    if syllables[-1][0] == '0': # this means unstressed in CMU dictionary
         return False
     syllables_ok = len(syllables) == 2
     if len(syllables) == 3 and syllables[-2][1] == "THE":
