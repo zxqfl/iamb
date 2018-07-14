@@ -60,8 +60,6 @@ def syllables_of_token(*, token, stresses):
         token = "MINUS"
     if token == "+":
         token = "PLUS"
-    if token == '"':
-        token = "QUOTE"
     if token == '%':
         token = "PERCENT"
     if token.isdigit():

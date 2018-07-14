@@ -1,6 +1,6 @@
 fn main() {
-    let a = 1;
+    let potato = 1;
     let b = 2;
-    let a_plus_b = a + b;
+    let a_plus_b = potato + b;
     println!("{}", a_plus_b);
 }

@@ -14,8 +14,6 @@ def main(input_lines):
     stresses = load_stresses()
     tokens = [x for line in input_lines for x in basic_split(line)]
     syllables = [to_syllables(token=token, stresses=stresses) for token in tokens]
-    print(tokens, file=sys.stderr)
-    print(syllables, file=sys.stderr)
     cache = {}
     line_end = 10
     def rec(index, posn_in_line):
@@ -83,3 +81,5 @@ if __name__ == "__main__":
         if type(x) != str:
             x = x[1]
         sys.stdout.write(x)
+    sys.stdout.write('\n')
+
